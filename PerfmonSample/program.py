@@ -23,26 +23,35 @@ def get_app_settings(config_file):
         retval[k] = v
     return retval
 
-def build_json():
-    retval = '{'
-    retval += '   "Time":"{}"'.format(datetime.datetime.utcnow())
-    # for counter in counters: # TODO: build counters into json
-    retval += ','
-    retval += '   "<counter name>": "raw value"'
-    retval += '}'
-
-    return retval
-
 def main():
     prg = Program()
     prg.run()
 
 class Program:
     def __init__(self):
-#        self.categories = ["processor", "memory", "disks", "network", "sensors", "users", "pids"]
-
         # TODO: handle edge cases
         self.app_settings = get_app_settings('./app3.config')
+
+    # we'll use the following for cleanup, supressing errors
+    def supress_error(self, sdsCall):
+        try:
+            sdsCall()
+        except Exception as e:
+            print(("Encountered Error: {error}".format(error=e)))
+
+    def cleanup(self, client, namespace_id):
+        print("Cleaning up")
+        print("Deleting the stream")
+        self.supress_error(lambda: client.deleteStream(namespace_id, 'Memory'))
+
+        # print("Deleting the views")
+        # self.supress_error(lambda: client.deleteView(namespace_id, 'Memory_SampleView'))
+        # self.supress_error(lambda: client.deleteView(namespace_id, sample_view_int_id))
+        #
+        # print("Deleting the types")
+        # self.supress_error(lambda: client.deleteType(namespace_id, sample_type_id))
+        # self.supress_error(lambda: client.deleteType(namespace_id, sample_target_type_id))
+        # self.supress_error(lambda: client.deleteType(namespace_id, sample_Integer_Type_id))
 
     def run(self):
         sample_type_id = 'PerfmonData_SampleType'
@@ -53,6 +62,7 @@ class Program:
         sample_behavior_id = 'PerfmonData_SampleBehavior'
         sample_view_id = 'Perfmon_SampleView'
         sample_view_int_id = 'PerfmonData_SampleIntView'
+        namespace_id = self.app_settings.get('namespaceId')
 
         # auth_handler = ApplicationAuthenticationHandler(self.app_settings)
         client = SdsClient(self.app_settings.get('tenantId'),
@@ -62,31 +72,29 @@ class Program:
                            self.app_settings.get('clientId'),
                            self.app_settings.get('clientSecret'))
 
+
+
         #TODO: DELETE OR COMMENT THIS AFTER TESTING
-        # client.deleteType(self.app_settings.get('namespaceId'),'Processor')
-        # client.deleteType(self.app_settings.get('namespaceId'),'Memory')
-
-        # categories = ["Processor", "Memory"]
+        # client.deleteType(self.app_settings.get('namespaceId'),'ProcessorStream')
+        # client.deleteType(self.app_settings.get('namespaceId'),'MemoryStream')
+        # self.cleanup(client, namespace_id)
         categories = ['Memory']
-        #####################################################################
-            # SdsType get or create
-        #####################################################################
-        for cat in categories:
-            print("Creating an Sds Type for '{}'".format(cat))
 
+        for cat in categories:
+            #####################################################################
+            # SdsType get or create
+            #####################################################################
+            print("Creating an Sds Type for '{}'".format(cat))
             type = get_category_type(cat)
             type = client.get_or_create_type(self.app_settings.get('namespaceId'), type)
-            print()
 
             #####################################################################
                 # SdsStream creation
             #####################################################################
             print("Creating an Sds Stream for '{}'".format(cat))
             stream = SdsStream()
-            stream.Id = cat
-            # stream.Id = sample_stream_id
-            stream.name = cat
-            # stream.name = sample_stream_name
+            stream.Id = "{}Stream".format(cat)
+            stream.name = "{}Stream".format(cat)
             stream.description = "A Stream to store '{}' events".format(cat)
             stream.typeId = type.Id
             stream.behavior_id = None
@@ -99,8 +107,8 @@ class Program:
             span = datetime.datetime.strptime("0:1:0", "%H:%M:%S")
             print("Inserting data")
             # Insert a single event
-            event
-            client.insertValue(self.app_settings.get('namespaceId'), stream.Id, )
+            # event
+            # client.insertValue(self.app_settings.get('namespaceId'), stream.Id, )
 
 
 
