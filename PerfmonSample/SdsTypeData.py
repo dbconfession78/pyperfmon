@@ -9,15 +9,19 @@ from performance_counters import PerformanceCounters as PC
 class SdsTypeData:
     def __init__(self, typeId=None):
         self.typeId = typeId
+        self.time = None
 
     def to_json(self):
         return json.dumps(self.to_dictionary())
 
     def to_dictionary(self):
-        dictionary = {'Time': str(datetime.datetime.utcnow())}
+        if self.time is None:
+            self.time = datetime.datetime.utcnow()
+        dictionary = {'Time': str(self.time) }
         dictionary['Typeid'] = self.typeId
         for k, v in self.__dict__.items():
-            dictionary[k] = v
+            if k != 'time':
+                dictionary[k] = v
         self.__properties = dictionary
         return dictionary
 

@@ -5,23 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6edf3da-83ed-4f30-a509-df1d19672136" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/RequestManager.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/SdsTypeData.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config.ini" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sdspy.py" />
-      <change beforePath="$PROJECT_DIR$/.idea/PerfmonSample.iml" afterPath="$PROJECT_DIR$/.idea/PerfmonSample.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/SdsClient.py" afterPath="$PROJECT_DIR$/SdsClient.py" />
-      <change beforePath="$PROJECT_DIR$/SdsStream.py" afterPath="$PROJECT_DIR$/SdsStream.py" />
-      <change beforePath="$PROJECT_DIR$/SdsType.py" afterPath="$PROJECT_DIR$/SdsType.py" />
-      <change beforePath="$PROJECT_DIR$/SdsTypeProperty.py" afterPath="$PROJECT_DIR$/SdsTypeProperty.py" />
-      <change beforePath="$PROJECT_DIR$/SdsView.py" afterPath="$PROJECT_DIR$/SdsView.py" />
-      <change beforePath="$PROJECT_DIR$/app.config" afterPath="$PROJECT_DIR$/app.config" />
-      <change beforePath="$PROJECT_DIR$/app2.config" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app3.config" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application_authentication_handler.py" afterPath="$PROJECT_DIR$/application_authentication_handler.py" />
-      <change beforePath="$PROJECT_DIR$/performance_counters.py" afterPath="$PROJECT_DIR$/performance_counters.py" />
+      <change beforePath="$PROJECT_DIR$/SdsTypeData.py" afterPath="$PROJECT_DIR$/SdsTypeData.py" />
       <change beforePath="$PROJECT_DIR$/program.py" afterPath="$PROJECT_DIR$/program.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,168 +17,120 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/PerfmonSample$program.coverage" NAME="program Coverage Results" MODIFIED="1531616186207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PerfmonSample$program.coverage" NAME="program Coverage Results" MODIFIED="1531682754147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PerfmonSample$SdsClient.coverage" NAME="SdsClient Coverage Results" MODIFIED="1531457321055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.7649977">
+    <splitter split-orientation="horizontal" split-proportion="0.46549392">
       <split-first>
-        <splitter split-orientation="horizontal" split-proportion="0.62300885">
-          <split-first>
-            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="program.py" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/program.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="651">
-                      <caret line="164" column="33" lean-forward="false" selection-start-line="164" selection-start-column="33" selection-end-line="164" selection-end-column="33" />
-                      <folding>
-                        <element signature="e#0#19#0" expanded="true" />
-                        <element signature="e#836#996#0" expanded="false" />
-                        <element signature="e#1118#1242#0" expanded="false" />
-                        <element signature="e#1313#1690#0" expanded="false" />
-                        <element signature="e#1768#2231#0" expanded="false" />
-                        <element signature="e#3556#3611#0" expanded="false" />
-                        <element signature="e#3556#3611#0" expanded="false" />
-                        <element signature="e#8177#8656#0" expanded="false" />
-                        <element signature="e#8720#9141#0" expanded="false" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="_strptime.py" pinned="false" current-in-tab="false">
-                <entry file="file:///usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib/python3.6/_strptime.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="292">
-                      <caret line="361" column="0" lean-forward="false" selection-start-line="361" selection-start-column="0" selection-end-line="361" selection-end-column="0" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="SdsView.py" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/SdsView.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="462">
-                      <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-                      <folding>
-                        <element signature="e#34#45#0" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="RequestManager.py" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/RequestManager.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="777">
-                      <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-                      <folding>
-                        <element signature="e#0#15#0" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="SdsClient.py" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/SdsClient.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="287">
-                      <caret line="556" column="8" lean-forward="false" selection-start-line="556" selection-start-column="8" selection-end-line="556" selection-end-column="8" />
-                      <folding>
-                        <element signature="e#0#33#0" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="sdspy.py" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/sdspy.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="63">
-                      <caret line="3" column="11" lean-forward="true" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="SdsType.py" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/SdsType.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="339">
-                      <caret line="47" column="21" lean-forward="false" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="SdsTypeCode.py" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/SdsTypeCode.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="357">
-                      <caret line="19" column="10" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="10" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="SdsTypeProperty.py" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/SdsTypeProperty.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="540">
-                      <caret line="126" column="21" lean-forward="false" selection-start-line="126" selection-start-column="21" selection-end-line="126" selection-end-column="21" />
-                      <folding>
-                        <element signature="e#0#21#0" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="scratch.py" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/scratch.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="0">
-                      <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="10" selection-end-column="28" />
-                      <folding>
-                        <element signature="e#0#15#0" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-            </leaf>
-          </split-first>
-          <split-second>
-            <leaf>
-              <file leaf-file-name="SdsTypeData.py" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/SdsTypeData.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="310">
-                      <caret line="16" column="58" lean-forward="false" selection-start-line="16" selection-start-column="58" selection-end-line="16" selection-end-column="58" />
-                      <folding>
-                        <element signature="e#0#11#0" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-            </leaf>
-          </split-second>
-        </splitter>
-      </split-first>
-      <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="config.ini" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/config.ini">
+          <file leaf-file-name="program.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/program.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="42">
-                  <caret line="2" column="21" lean-forward="true" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+                <state relative-caret-position="547">
+                  <caret line="207" column="27" lean-forward="true" selection-start-line="207" selection-start-column="27" selection-end-line="207" selection-end-column="27" />
+                  <folding>
+                    <element signature="e#0#19#0" expanded="true" />
+                    <element signature="e#831#991#0" expanded="false" />
+                    <element signature="e#1113#1237#0" expanded="false" />
+                    <element signature="e#1308#1685#0" expanded="false" />
+                    <element signature="e#1763#2226#0" expanded="false" />
+                    <element signature="e#3625#3680#0" expanded="false" />
+                    <element signature="e#3625#3680#0" expanded="false" />
+                    <element signature="e#9129#9289#0" expanded="false" />
+                    <element signature="e#9318#9416#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="codecs.py" pinned="false" current-in-tab="false">
+            <entry file="file:///usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="299">
+                  <caret line="308" column="0" lean-forward="false" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="SdsStream.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="_strptime.py" pinned="false" current-in-tab="false">
+            <entry file="file:///usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib/python3.6/_strptime.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="292">
+                  <caret line="361" column="0" lean-forward="false" selection-start-line="361" selection-start-column="0" selection-end-line="361" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SdsView.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/SdsView.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="462">
+                  <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#34#45#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="RequestManager.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/RequestManager.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="777">
+                  <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#0#15#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="sdspy.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/sdspy.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="63">
+                  <caret line="3" column="11" lean-forward="true" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SdsType.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/SdsType.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="339">
+                  <caret line="47" column="21" lean-forward="false" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SdsTypeCode.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/SdsTypeCode.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="357">
+                  <caret line="19" column="10" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="10" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SdsTypeProperty.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/SdsTypeProperty.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="540">
+                  <caret line="126" column="21" lean-forward="false" selection-start-line="126" selection-start-column="21" selection-end-line="126" selection-end-column="21" />
+                  <folding>
+                    <element signature="e#0#21#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SdsStream.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/SdsStream.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="269">
@@ -203,22 +140,30 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="performance_counters.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/performance_counters.py">
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="SdsClient.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/SdsClient.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="399">
-                  <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-                  <folding />
+                <state relative-caret-position="287">
+                  <caret line="692" column="0" lean-forward="false" selection-start-line="692" selection-start-column="0" selection-end-line="692" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#0#33#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="app.config" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app.config">
+          <file leaf-file-name="SdsTypeData.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/SdsTypeData.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="315">
-                  <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-                  <folding />
+                <state relative-caret-position="394">
+                  <caret line="37" column="12" lean-forward="false" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
+                  <folding>
+                    <element signature="e#0#11#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -236,10 +181,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>perform</find>
-      <find>base</find>
-      <find>prop</find>
-      <find>properties</find>
       <find>from</find>
       <find>performa</find>
       <find>PC</find>
@@ -266,6 +207,10 @@
       <find>print(</find>
       <find>with open</find>
       <find>window</find>
+      <find>self.typ</find>
+      <find>2018-07-15 11:21:51.371062</find>
+      <find>print(pa</find>
+      <find>PAY</find>
     </findStrings>
     <replaceStrings>
       <replace>target_id</replace>
@@ -317,9 +262,9 @@
         <option value="$PROJECT_DIR$/sdspy.py" />
         <option value="$PROJECT_DIR$/app.config" />
         <option value="$PROJECT_DIR$/config.ini" />
-        <option value="$PROJECT_DIR$/SdsClient.py" />
         <option value="$PROJECT_DIR$/SdsStream.py" />
         <option value="$PROJECT_DIR$/SdsTypeData.py" />
+        <option value="$PROJECT_DIR$/SdsClient.py" />
         <option value="$PROJECT_DIR$/program.py" />
       </list>
     </option>
@@ -556,13 +501,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/program.py</url>
-          <line>192</line>
-          <option name="timeStamp" value="282" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/program.py</url>
-          <line>184</line>
-          <option name="timeStamp" value="292" />
+          <line>121</line>
+          <option name="timeStamp" value="325" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -575,7 +515,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="295" />
+      <option name="time" value="327" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -600,13 +540,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application_authentication_handler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/performance_counters.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
@@ -743,14 +676,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="230" column="0" lean-forward="false" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application_authentication_handler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="651">
@@ -803,26 +728,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib/python3.6/configparser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
           <caret line="1140" column="0" lean-forward="false" selection-start-line="1140" selection-start-column="0" selection-end-line="1140" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="21" lean-forward="true" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -835,10 +744,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/performance_counters.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="21" lean-forward="true" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -851,10 +776,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="308" column="0" lean-forward="false" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SdsClient.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="692" column="0" lean-forward="false" selection-start-line="692" selection-start-column="0" selection-end-line="692" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="649">
+          <caret line="196" column="26" lean-forward="false" selection-start-line="196" selection-start-column="26" selection-end-line="196" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SdsTypeData.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="16" column="58" lean-forward="false" selection-start-line="16" selection-start-column="58" selection-end-line="16" selection-end-column="58" />
+        <state relative-caret-position="394">
+          <caret line="37" column="12" lean-forward="false" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
@@ -863,28 +814,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/program.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="164" column="33" lean-forward="false" selection-start-line="164" selection-start-column="33" selection-end-line="164" selection-end-column="33" />
+        <state relative-caret-position="547">
+          <caret line="207" column="27" lean-forward="true" selection-start-line="207" selection-start-column="27" selection-end-line="207" selection-end-column="27" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#836#996#0" expanded="false" />
-            <element signature="e#1118#1242#0" expanded="false" />
-            <element signature="e#1313#1690#0" expanded="false" />
-            <element signature="e#1768#2231#0" expanded="false" />
-            <element signature="e#3556#3611#0" expanded="false" />
-            <element signature="e#3556#3611#0" expanded="false" />
-            <element signature="e#8177#8656#0" expanded="false" />
-            <element signature="e#8720#9141#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SdsClient.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="556" column="8" lean-forward="false" selection-start-line="556" selection-start-column="8" selection-end-line="556" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
+            <element signature="e#831#991#0" expanded="false" />
+            <element signature="e#1113#1237#0" expanded="false" />
+            <element signature="e#1308#1685#0" expanded="false" />
+            <element signature="e#1763#2226#0" expanded="false" />
+            <element signature="e#3625#3680#0" expanded="false" />
+            <element signature="e#3625#3680#0" expanded="false" />
+            <element signature="e#9129#9289#0" expanded="false" />
+            <element signature="e#9318#9416#0" expanded="false" />
           </folding>
         </state>
       </provider>

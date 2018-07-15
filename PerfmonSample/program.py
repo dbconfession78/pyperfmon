@@ -1,6 +1,6 @@
 from sdspy import *
 import configparser
-import inspect
+import os
 
 
 def get_app_settings(config_file):
@@ -74,8 +74,10 @@ class Program:
             self.supress_error(lambda: client.deleteType(namespace_id, elem.id))
 
     # Generate a new WaveData event
-    def nextEvent(self, typeId):
+    def nextEvent(self, typeId, time_key=None):
         new_event = SdsTypeData(typeId)
+        if time_key:
+            new_event.time = time_key
         counters = PC().get_counters(typeId)
 
         for i, value in enumerate(counters):
@@ -117,7 +119,10 @@ class Program:
         # tenant_id = self.app_settings.get('tenantId')
 
         categories = ['Memory']
-        # self.cleanup_single(client, namespaceId, 'Memory')
+        if check_deleted() == False:
+            self.cleanup_single(client, namespaceId, 'Memory')
+            set_deleted(True)
+
         for typeId in categories:
             #####################################################################
             # SdsType get or creattion
@@ -145,15 +150,17 @@ class Program:
             # CRUD operations for events
             #####################################################################
             start = datetime.datetime.now()
-            span = datetime.datetime.strptime("0:1:0", "%H:%M:%S")
+            # span = datetime.datetime.strptime("0:1:0", "%H:%M:%S")
 
             # Insert a single event
-            event = self.nextEvent(typeId)
+            event = self.nextEvent(typeId, time_key=start)
             client.insertValue(namespaceId, stream.id, event)
+            set_deleted(False)
 
             # Insert a list of events
             events = [self.nextEvent(typeId) for _ in range(2)]
             client.insertValues(namespaceId,stream.id,events)
+            set_deleted(False)
 
             # Get the last event inserted in a stream
             print("Getting latest '{}' event".format(typeId))
@@ -165,24 +172,42 @@ class Program:
             events = client.getWindowValues(namespaceId, stream.id, SdsTypeData, str(start),
                                             end=str(datetime.datetime.utcnow()))
 
+            times = []
             print("Getting all '{}' events".format(typeId))
-            print("Total '{}' events found: {}".format( typeId, str(len(events))))
-
+            print("Total '{}' events found: {}".format(typeId, str(len(events))))
             for i, event in enumerate(events):
+                times.append(event.Time)
                 print("{}. {}".format(i+1, toString(event)))
             print()
 
             print("Updating events")
             # Update the first event
-            # event = self.nextEvent(typeId)
-            # client.updateValue(namespaceId, stream.id, event)
+            event = self.nextEvent(typeId, start)
+            client.updateValue(namespaceId, stream.id, event)
+            set_deleted(False)
 
-            # Update the rest of the events, adding events that have no prior index entry
-            # updatedEvents = []
-            # for i in range(2, 40, 2):
-            #     event = self.nextEvent(typeId)
-            #     updatedEvents.append(event)
-            # client.updateValues(namespaceId, stream.id, updatedEvents)
+            # Update the rest of the events
+            updatedEvents = []
+            for i in range(1, len(times)):
+                event = self.nextEvent(typeId, time_key=times[i])
+                updatedEvents.append(event)
+            client.updateValues(namespaceId, stream.id, updatedEvents)
+            set_deleted(False)
+
+            # Get all events
+            events = client.getWindowValues(namespaceId, stream.id, SdsTypeData, str(start),
+                                            end=str(datetime.datetime.utcnow()))
+
+            print("Getting all '{}' events".format(typeId))
+            print("Total '{}' events found: {}".format( typeId, str(len(events))))
+            for i, event in enumerate(events):
+                print("{}. {}".format(i+1, toString(event)))
+            print()
+
+            # print("Replacing events")
+            # replace one value
+            # event = self.nextEvent(typeId, start)
+            # client.replaceValue(namespaceId, stream.id, event)
 
 
             ######################################################################################################
@@ -190,55 +215,28 @@ class Program:
             ######################################################################################################
             # Cleanup the remaining artifacts
             self.cleanup_single(client, namespaceId, typeId)
+            set_deleted(True)
             # self.cleanup(client, namespaceId, self.views, self.types, self.streams)
 
+def check_deleted():
+    dct = {}
+    if os.path.exists('./prefs.txt'):
+        with open('./prefs.txt', mode='r', encoding='utf-8') as f:
+            return json.load(f).get('deleted')
 
-def get_events_in_window(client, stream_id, ret_obj, start, end, view_id=""):
-    base_path = "/api/Tenants/{}/Namespaces/{}".format(client.tenantId, client.namespaceId)
-    data_path = base_path + "/Streams/{}/Data".format(stream_id)
-    url = client.url + data_path + "/GetWindowValues?startIndex={}&endIndex={}&viewId={}".format(start, end, view_id)
-    req = RequestManager(client, url, "get")
-    req.execute()
-    content = json.loads(req.content)
-
-    values = []
-    for c in content:
-        values.append(ret_obj.from_dictionary(c))
-
-    return values
+def set_deleted(flag):
+    with open('./prefs.txt', mode='w', encoding='utf-8') as f:
+        json.dump({"deleted": flag}, f)
 
 
-def get_last_event(client, stream, ret_obj, view_id=""):
-    # get counters from stream
-    base_path = "/api/Tenants/{}/Namespaces/{}".format(client.tenantId, client.namespaceId)
-    data_path = base_path + "/Streams/{}/Data".format(stream.id)
-    url = client.url + data_path + "/GetLastValue?viewId={}".format(view_id)
-    req = RequestManager(client, url, "get")
-    req.execute()
-    content = json.loads(req.content)
-    ret_obj = ret_obj.from_json(content)
-    return ret_obj
-
-
-def insert_counters(client, stream, counters, type_id):
-    data = SdsTypeData(type_id)
-    for i, value in enumerate(counters):
-        data.__setattr__(counters._fields[i], value)
-    req_url = "{}/api/Tenants/{}/Namespaces/{}/Streams/{}/Data/InsertValue".format(
-        client.url, client.tenantId, client.namespaceId, stream.id)
-    req = RequestManager(client, req_url, "post")
-    req.payload = data.to_json()
-    req.execute()
-
-
-def getCategoryDataType(sample_type_id):
-    if sample_type_id is None or not isinstance(sample_type_id, str):
+def getCategoryDataType(typeId):
+    if typeId is None or not isinstance(typeId, str):
         raise TypeError('sample_type_id is not an instantiated string')
 
     category = SdsType()
-    category.Id = sample_type_id
-    category.Name = sample_type_id + "DataSample"
-    category.Description = "This is a sample Sds type for storing {}Data events".format(sample_type_id)
+    category.Id = typeId
+    category.Name = typeId
+    category.Description = "This is a sample Sds type for storing {}Data events".format(typeId)
     category.SdsTypeCode = SdsTypeCode.Object
     category.Properties = []
 
@@ -271,7 +269,7 @@ def getCategoryDataType(sample_type_id):
     category.Properties.append(type_id_prop)
 
     # get and append counters to properties
-    counters = PC().get_counters(sample_type_id)
+    counters = PC().get_counters(typeId)
 
     for field in counters._fields:
         prop = SdsTypeProperty()
