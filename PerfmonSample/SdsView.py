@@ -1,19 +1,25 @@
 # from JsonEncoder import Encoder
 import json
-import inspect
 from SdsViewProperty import SdsViewProperty
 
 
 class SdsView(object):
     """Sds view definitions"""
+    def __init__(self):
+        self.id = None
+        self.__name = None
+        self.__description = None
+        self.__sourceTypeId = None
+        self.__targetTypeId = None
+        self.__properties = None
 
     @property
     def Id(self):
-        return self.__Id
+        return self.id
 
     @Id.setter
-    def Id(self, Id):
-        self.__Id = Id
+    def Id(self, _id):
+        self.id = _id
 
     @property
     def name(self):
@@ -41,7 +47,7 @@ class SdsView(object):
 
     @property
     def targetTypeId(self):
-        return self.__targetTypeid
+        return self.__targetTypeId
 
     @targetTypeId.setter
     def targetTypeId(self, type_code):
@@ -60,7 +66,7 @@ class SdsView(object):
 
     def to_dictionary(self):
         # required properties
-        dictionary = {'id': self.Id, 'source_type_id': self.source_type_id, 'target_type_id': self.target_type_id}
+        dictionary = {'id': self.Id, 'source_type_id': self.__sourceTypeId, 'target_type_id': self.__targetTypeId}
 
         # optional properties
         if hasattr(self, 'properties'):
@@ -98,27 +104,5 @@ class SdsView(object):
                 else:
                     prop_val = content[prop_name]
                 view.__setattr__(prop_name, prop_val)
-
-        # if 'id' in content:
-        #     view.id = content['id']
-        #
-        # if 'name' in content:
-        #     view.Name = content['name']
-        #
-        # if 'description' in content:
-        #     view.description = content['description']
-        #
-        # if 'target_type_id' in content:
-        #     view.target_type_id = content['target_type_id']
-        #
-        # if 'source_type_id' in content:
-        #     view.source_type_id = content['source_type_id']
-
-        # if 'properties' in content:
-        #     properties = content['properties']
-        #     if properties is not None and len(properties) > 0:
-        #         view.properties = []
-        #         for prop in properties:
-        #             view.properties.append(SdsViewProperty.from_dictionary(prop))
 
         return view

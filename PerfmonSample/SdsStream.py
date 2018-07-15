@@ -4,53 +4,58 @@ from SdsStreamIndex import SdsStreamIndex
 
 class SdsStream(object):
     """Sds stream definition"""
-
-    @property
-    def Id(self):
-        return self.__Id
-
-    @Id.setter
-    def Id(self, Id):
-        self.__Id = Id
-
-    @property
-    def name(self):
-        return self.__name
-
-    @name.setter
-    def name(self, name):
-        self.__name = name
-
-    @property
-    def description(self):
-        return self.__description
-
-    @description.setter
-    def description(self, description):
+    def __init__(self, id, name, typeId, description):
+        self.id = id
+        self.name = name
+        self.__typeId = typeId
         self.__description = description
 
     @property
-    def typeId(self):
+    def id(self):
+        return self.__Id
+
+    @id.setter
+    def id(self, Id):
+        self.__Id = Id
+
+    @property
+    def Name(self):
+        return self.__name
+
+    @Name.setter
+    def Name(self, name):
+        self.__name = name
+
+    @property
+    def Description(self):
+        return self.__description
+
+    @Description.setter
+    def Description(self, description):
+        self.__description = description
+
+    @property
+    def TypeId(self):
         return self.__typeId
 
-    @typeId.setter
-    def typeId(self, typeId):
+    @TypeId.setter
+    def TypeId(self, typeId):
         self.__typeId = typeId
 
     @property
-    def behavior_id(self):
+    def BehaviorId(self):
         return self.__behavior_id
 
-    @behavior_id.setter
-    def behavior_id(self, behavior_id):
+    @BehaviorId.setter
+    def BehaviorId(self, behavior_id):
         self.__behavior_id = behavior_id
 
     @property
-    def indexes(self):
+    def Indexes(self):
         return self.__indexes
 
-    @indexes.setter
-    def indexes(self, indexes):
+    @Indexes.setter
+    def Indexes(self, indexes):
         self.__indexes = indexes
 
     def to_json(self):
@@ -58,22 +63,22 @@ class SdsStream(object):
 
     def to_dictionary(self):
         # required properties
-        dictionary = {'id': self.Id, 'typeId': self.typeId}
+        dictionary = {'Id': self.id, 'TypeId': self.TypeId}
 
         # optional properties
-        if hasattr(self, 'name'):
-            dictionary['name'] = self.name
+        if hasattr(self, 'Name'):
+            dictionary['Name'] = self.Name
 
-        if hasattr(self, 'description'):
-            dictionary['description'] = self.description
+        if hasattr(self, 'Description'):
+            dictionary['Description'] = self.Description
 
-        if hasattr(self, 'behavior_id'):
-            dictionary['behavior_id'] = self.behavior_id
+        if hasattr(self, 'BehaviorId'):
+            dictionary['BehaviorId'] = self.BehaviorId
 
-        if hasattr(self, 'indexes'):
-            dictionary['indexes'] = []
-            for value in self.indexes:
-                dictionary['indexes'].append(value.to_dictionary())
+        if hasattr(self, 'Indexes'):
+            dictionary['Indexes'] = []
+            for value in self.Indexes:
+                dictionary['Indexes'].append(value.to_dictionary())
 
         return dictionary
 
@@ -88,27 +93,26 @@ class SdsStream(object):
         if len(content) == 0:
             return stream
 
-        if 'id' in content:
-            stream.Id = content['id']
+        if 'Id' in content:
+            stream.id = content['Id']
 
-        if 'name' in content:
-            stream.name = content['name']
+        if 'Name' in content:
+            stream.Name = content['Name']
 
-        if 'description' in content:
-            stream.description = content['description']
+        if 'Description' in content:
+            stream.Description = content['Description']
 
-        if 'typeId' in content:
-            stream.typeId = content['typeId']
+        if 'TypeId' in content:
+            stream.TypeId = content['TypeId']
 
-        if 'behavior_id' in content:
-            stream.behavior_id = content['behavior_id']
+        if 'BehaviorId' in content:
+            stream.BehaviorId = content['BehaviorId']
 
-        if 'indexes' in content:
-            indexes = content['indexes']
+        if 'Indexes' in content:
+            indexes = content['Indexes']
             if indexes is not None and len(indexes) > 0:
-                stream.indexes = []
+                stream.Indexes = []
                 for value in indexes:
-                    stream.indexes.append(SdsStreamIndex.from_dictionary(value))
+                    stream.Indexes.append(SdsStreamIndex.from_dictionary(value))
 
         return stream
-

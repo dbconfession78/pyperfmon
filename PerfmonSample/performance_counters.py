@@ -14,3 +14,7 @@ class PerformanceCounters:
     def get_counters(self, cat_name):
         return self.type_dct[cat_name]
         # return self.type_dct[cat_name.lower()]
+
+    def get_counter_names(self, cat_name):
+        #TODO handle categories that don't have _fields (e.g. disks)
+        return self.type_dct.get(cat_name)._fields

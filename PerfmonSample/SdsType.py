@@ -7,45 +7,45 @@ class SdsType(object):
 
     @property
     def Id(self):
-        return self.__Id
+        return self.__id
     @Id.setter
-    def Id(self, Id):
-        self.__Id = Id
+    def Id(self, id):
+        self.__id = id
 
     @property
-    def name(self):
+    def Name(self):
         return self.__name
-    @name.setter
-    def name(self, name):
+    @Name.setter
+    def Name(self, name):
         self.__name = name
 
     @property
-    def properties(self):
+    def Properties(self):
         return self.__properties
-    @properties.setter
-    def properties(self, properties):
+    @Properties.setter
+    def Properties(self, properties):
         self.__properties = properties
 
     @property
-    def description(self):
+    def Description(self):
         return self.__description
-    @description.setter
-    def description(self, description):
+    @Description.setter
+    def Description(self, description):
         self.__description = description
 
     @property
-    def base_type(self):
-        return self.__base_type
-    @base_type.setter
-    def base_type(self, base_type):
-        self.__base_type = base_type
+    def BaseType(self):
+        return self.__baseType
+    @BaseType.setter
+    def BaseType(self, baseType):
+        self.__baseType = baseType
 
     @property
     def SdsTypeCode(self):
-        return self.__type_code
+        return self.__typeCode
     @SdsTypeCode.setter
-    def SdsTypeCode(self, type_code):
-        self.__type_code = type_code
+    def SdsTypeCode(self, typeCode):
+        self.__typeCode = typeCode
 
     def to_json(self):
         return json.dumps(self.to_dictionary())
@@ -53,22 +53,22 @@ class SdsType(object):
     def to_dictionary(self):
         dictionary = {'SdsTypeCode': self.SdsTypeCode.value}
 
-        if hasattr(self, 'properties'):
-            dictionary['properties'] = []
-            for prop in self.properties:
-                dictionary['properties'].append(prop.to_dictionary())
+        if hasattr(self, 'Properties'):
+            dictionary['Properties'] = []
+            for prop in self.Properties:
+                dictionary['Properties'].append(prop.to_dictionary())
 
         if hasattr(self, 'Id'):
             dictionary['Id'] = self.Id
 
-        if hasattr(self, 'name'):
-            dictionary['name'] = self.name
+        if hasattr(self, 'Name'):
+            dictionary['Name'] = self.Name
 
-        if hasattr(self, 'description'):
-            dictionary['description'] = self.description
+        if hasattr(self, 'Description'):
+            dictionary['Description'] = self.Description
 
-        if hasattr(self, 'base_type'):
-            dictionary['base_type'] = self.base_type.to_dictionary()
+        if hasattr(self, 'BaseType'):
+            dictionary['BaseType'] = self.BaseType.to_dictionary()
 
         return dictionary
 
@@ -86,24 +86,24 @@ class SdsType(object):
         if 'Id' in content:
             type.Id = content['Id']
 
-        if 'name' in content:
-            type.name = content['name']
+        if 'Name' in content:
+            type.name = content['Name']
 
-        if 'description' in content:
-            type.description = content['description']
+        if 'Description' in content:
+            type.description = content['Description']
 
         if 'SdsTypeCode' in content:
             type.SdsTypeCode = SdsTypeCode(content['SdsTypeCode'])
 
-        if 'base_type' in content:
-            type.base_type = SdsType.from_dictionary(content['base_type'])
+        if 'BaseType' in content:
+            type.BaseType = SdsType.from_dictionary(content['BaseType'])
 
-        if 'properties' in content:
-            properties = content['properties']
+        if 'Properties' in content:
+            properties = content['Properties']
             if properties is not None and len(properties) > 0:
-                type.properties = []
+                type.Properties = []
                 for prop in properties:
-                    type.properties.append(SdsTypeProperty.from_dictionary(prop))
+                    type.Properties.append(SdsTypeProperty.from_dictionary(prop))
         return type
 
 

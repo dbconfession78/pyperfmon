@@ -19,15 +19,17 @@ class SdsClient(object):
     """Handles communication with Sds Service"""
 
 
-    def __init__(self, tenant, url, resource, authority, clientid, clientSecret):
-        self.__tenant = tenant
-        self.__url = url
-        self.__resource = resource
-        self.__clientid = clientid
-        self.__clientSecret = clientSecret
+    # def __init__(self, tenant, url, resource, authority, clientId, clientSecret, namespaceId):
+    def __init__(self, tenant, url, resource, authority, clientId, clientSecret):
+        self.tenantId = tenant
+        self.url = url
+        self.resource = resource
+        self.clientId = clientId
+        self.clientSecret = clientSecret
+        # self.namespaceId = namespaceId
         # self.__app_settings = app_settings
 
-        self.__authority = authority
+        self.authority = authority
 
         self.__token = ""
         self.__expiration = 0
@@ -37,7 +39,7 @@ class SdsClient(object):
 
     @property
     def Uri(self):
-        return self.__url
+        return self.url
 
     def getType(self, namespace_id, typeId):
         """Retrieves the type specified by 'type_id' from Sds Service"""
@@ -47,7 +49,7 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.get(
-            self.__url + self.__typesPath.format(tenant_id=self.__tenant, namespace_id=namespace_id, type_id=typeId),
+            self.url + self.__typesPath.format(tenant_id=self.tenantId, namespace_id=namespace_id, type_id=typeId),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -66,8 +68,8 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.get(
-            self.__url + self.__typesPath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                 type_id=typeId) + "/ReferenceCount",
+            self.url + self.__typesPath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                               type_id=typeId) + "/ReferenceCount",
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -84,8 +86,8 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.get(
-            self.__url + self.__getTypesPath.format(tenant_id=self.__tenant, namespace_id=namespace_id, skip=skip,
-                                                    count=count),
+            self.url + self.__getTypesPath.format(tenant_id=self.tenantId, namespace_id=namespace_id, skip=skip,
+                                                  count=count),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -99,23 +101,23 @@ class SdsClient(object):
         response.close()
         return results
 
-    def get_or_create_type(self, namespace_id, type):
+    def getOrCreateType(self, namespace_id, type):
         """Tells Sds Service to create a type based on local 'type' or get if existing type matches"""
         if namespace_id is None:
             raise TypeError
         if type is None or not isinstance(type, SdsType):
             raise TypeError
 
-        req_url = self.__url + self.__typesPath.format(
-            tenant_id=self.__tenant,
+        req_url = self.url + self.__typesPath.format(
+            tenant_id=self.tenantId,
             namespace_id=namespace_id,
             type_id=type.Id)
         hdrs = self.__sdsHeaders()
         payload=type.to_json()
-        print("URL: {}".format(req_url))
-        print("HEADERS\n{}".format(hdrs))
-        print()
-        print("PAYLOAD\n{}".format(payload))
+        # print("URL: {}".format(req_url))
+        # print("HEADERS\n{}".format(hdrs))
+        # print()
+        # print("PAYLOAD\n{}".format(payload))
         response = requests.post(
             url = req_url,
             data=payload,
@@ -139,7 +141,7 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.put(
-            self.__url + self.__typesPath.format(tenant_id=self.__tenant, namespace_id=namespace_id, type_id=type.Id),
+            self.url + self.__typesPath.format(tenant_id=self.tenantId, namespace_id=namespace_id, type_id=type.Id),
             data=type.to_json(), headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -158,14 +160,13 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.delete(
-            self.__url + self.__typesPath.format(tenant_id=self.__tenant, namespace_id=namespace_id, type_id=typeId),
+            self.url + self.__typesPath.format(tenant_id=self.tenantId, namespace_id=namespace_id, type_id=typeId),
             headers=self.__sdsHeaders())
 
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
             raise SdsError("Failed to delete SdsType, {type_id}. {status}:{reason}".
                            format(type_id=typeId, status=response.status_code, reason=response.text))
-
         response.close()
 
     def getView(self, namespace_id, view_id):
@@ -176,8 +177,8 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.get(
-            self.__url + self.__viewsPath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                 view_id=view_id),
+            self.url + self.__viewsPath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                               view_id=view_id),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -196,8 +197,8 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.get(
-            self.__url + self.__viewsPath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                 view_id=view_id) + "/Map",
+            self.url + self.__viewsPath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                               view_id=view_id) + "/Map",
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -214,8 +215,8 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.get(
-            self.__url + self.__viewsPath.format(tenant_id=self.__tenant, namespace_id=namespace_id, skip=skip,
-                                                 count=count),
+            self.url + self.__viewsPath.format(tenant_id=self.tenantId, namespace_id=namespace_id, skip=skip,
+                                               count=count),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -237,7 +238,7 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.post(
-            self.__url + self.__viewsPath.format(tenant_id=self.__tenant, namespace_id=namespace_id, view_id=view.Id),
+            self.url + self.__viewsPath.format(tenant_id=self.tenantId, namespace_id=namespace_id, view_id=view.Id),
             data=view.to_json(),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
@@ -257,7 +258,7 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.put(
-            self.__url + self.__viewsPath.format(tenant_id=self.__tenant, namespace_id=namespace_id, view_id=view.Id),
+            self.url + self.__viewsPath.format(tenant_id=self.tenantId, namespace_id=namespace_id, view_id=view.Id),
             data=view.to_json(),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
@@ -275,7 +276,7 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.delete(
-            self.__url + self.__viewsPath.format(tenant_id=self.__tenant, namespace_id=namespace_id, view_id=view_id),
+            self.url + self.__viewsPath.format(tenant_id=self.tenantId, namespace_id=namespace_id, view_id=view_id),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -292,8 +293,8 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.get(
-            self.__url + self.__streamsPath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                   stream_id=stream_id),
+            self.url + self.__streamsPath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                 stream_id=stream_id),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -312,8 +313,8 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.get(
-            self.__url + self.__streamsPath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                   stream_id=stream_id) + "/Type",
+            self.url + self.__streamsPath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                 stream_id=stream_id) + "/Type",
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -332,8 +333,8 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.get(
-            self.__url + self.__getStreamsPath.format(tenant_id=self.__tenant, namespace_id=namespace_id, query=query,
-                                                      skip=skip, count=count),
+            self.url + self.__getStreamsPath.format(tenant_id=self.tenantId, namespace_id=namespace_id, query=query,
+                                                    skip=skip, count=count),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -354,15 +355,15 @@ class SdsClient(object):
         if stream is None or not isinstance(stream, SdsStream):
             raise TypeError
         response = requests.post(
-            self.__url + self.__streamsPath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                   stream_id=stream.Id),
+            self.url + self.__streamsPath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                 stream_id=stream.id),
             data=stream.to_json(),
             headers=self.__sdsHeaders())
 
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
             raise SdsError("Failed to create SdsStream, {stream_id}. {status}:{reason}".
-                           format(stream_id=stream.Id, status=response.status_code, reason=response.text))
+                           format(stream_id=stream.id, status=response.status_code, reason=response.text))
 
         stream = SdsStream.from_json(json.loads(response.content))
         response.close()
@@ -374,17 +375,17 @@ class SdsClient(object):
             raise TypeError
         if stream is None or not isinstance(stream, SdsStream):
             raise TypeError
-        req_url = self.__url + self.__streamsPath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                   stream_id=stream.Id)
+        req_url = self.url + self.__streamsPath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                       stream_id=stream.id)
         payload = stream.to_json()
         hdrs = self.__sdsHeaders()
 
-        print("URL 2: {}".format(req_url))
-        print("HEADERS 2\n{}".format(hdrs))
-        print()
-        print("PAYLOAD 2\n{}".format(payload))
+        # print("URL 2: {}".format(req_url))
+        # print("HEADERS 2\n{}".format(hdrs))
+        # print()
+        # print("PAYLOAD 2\n{}".format(payload))
         response = requests.put(
-            # self.__url + self.__streamsPath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
+            # self.url + self.__streamsPath.format(tenant_id=self.tenant, namespace_id=namespace_id,
             #                                        stream_id=stream.Id),
             url=req_url,
             data=payload,
@@ -392,7 +393,7 @@ class SdsClient(object):
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
             raise SdsError("Failed to create SdsStream, {stream_id}. {status}:{reason}".
-                           format(stream_id=stream.Id, status=response.status_code, reason=response.text))
+                           format(stream_id=stream.id, status=response.status_code, reason=response.text))
 
         response.close()
 
@@ -404,8 +405,8 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.delete(
-            self.__url + self.__streamsPath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                   stream_id=stream_id),
+            self.url + self.__streamsPath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                 stream_id=stream_id),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -420,14 +421,14 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.put(
-            self.__url + self.__streamsPath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                   stream_id=streamid) + "/Tags",
+            self.url + self.__streamsPath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                 stream_id=streamid) + "/Tags",
             data=json.dumps(tags),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
             raise SdsError("Failed to create tags for Stream: {stream_id}. {status}:{reason}".
-                           format(stream_id=stream.Id, status=response.status_code, reason=response.text))
+                           format(stream_id=stream.id, status=response.status_code, reason=response.text))
 
     def createOrUpdateMetadata(self, namespace_id, streamid, metadata):
         """Tells Sds Service to create metadata and associate them with the given streamid"""
@@ -435,14 +436,14 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.put(
-            self.__url + self.__streamsPath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                   stream_id=streamid) + "/Metadata",
+            self.url + self.__streamsPath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                 stream_id=streamid) + "/Metadata",
             data=json.dumps(metadata),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
             raise SdsError("Failed to create metadata for Stream: {stream_id}. {status}:{reason}".
-                           format(stream_id=stream.Id, status=response.status_code, reason=response.text))
+                           format(stream_id=stream.id, status=response.status_code, reason=response.text))
 
     def getTags(self, namespace_id, streamid):
         """Tells Sds Service to get tags associated with the given streamid """
@@ -450,13 +451,13 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.get(
-            self.__url + self.__streamsPath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                   stream_id=streamid) + "/Tags",
+            self.url + self.__streamsPath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                 stream_id=streamid) + "/Tags",
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
             raise SdsError("Failed to get tags for Stream: {stream_id}. {status}:{reason}".
-                           format(stream_id=stream.Id, status=response.status_code, reason=response.text))
+                           format(stream_id=stream.id, status=response.status_code, reason=response.text))
 
         content = json.loads(response.content)
         response.close()
@@ -468,13 +469,13 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.get(
-            self.__url + self.__streamsPath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                   stream_id=streamid) + "/Metadata/" + key,
+            self.url + self.__streamsPath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                 stream_id=streamid) + "/Metadata/" + key,
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
             raise SdsError("Failed to get metadata for Stream: {stream_id} and Key {key}. {status}:{reason}".
-                           format(stream_id=stream.Id, status=response.status_code, reason=response.text))
+                           format(stream_id=stream.id, status=response.status_code, reason=response.text))
 
         content = json.loads(response.content)
         response.close()
@@ -495,8 +496,8 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.get(
-            self.__url + self.__getValueQuery.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                     stream_id=stream_id, index=index, view_id=view_id),
+            self.url + self.__getValueQuery.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                   stream_id=stream_id, index=index, view_id=view_id),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -519,8 +520,8 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.get(
-            self.__url + self.__getFirstValue.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                     stream_id=stream_id, view_id=view_id),
+            self.url + self.__getFirstValue.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                   stream_id=stream_id, view_id=view_id),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -541,8 +542,8 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.get(
-            self.__url + self.__getLastValue.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                    stream_id=stream_id, view_id=view_id),
+            self.url + self.__getLastValue.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                  stream_id=stream_id, view_id=view_id),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -567,8 +568,8 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.get(
-            self.__url + self.__getWindowValues.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                       stream_id=stream_id, start=start, end=end, view_id=view_id),
+            self.url + self.__getWindowValues.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                     stream_id=stream_id, start=start, end=end, view_id=view_id),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -604,10 +605,10 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.get(
-            self.__url + self.__getRangeValuesQuery.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                           stream_id=stream_id, start=start, skip=skip, count=count,
-                                                           reverse=reverse, boundary_type=boundary_type.value,
-                                                           view_id=view_id),
+            self.url + self.__getRangeValuesQuery.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                         stream_id=stream_id, start=start, skip=skip, count=count,
+                                                         reverse=reverse, boundary_type=boundary_type.value,
+                                                         view_id=view_id),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -637,8 +638,8 @@ class SdsClient(object):
             payload = value
 
         response = requests.post(
-            self.__url + self.__insertValuePath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                       stream_id=stream_id),
+            self.url + self.__insertValuePath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                     stream_id=stream_id),
             data=payload,
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
@@ -666,8 +667,8 @@ class SdsClient(object):
             payload = values
 
         response = requests.post(
-            self.__url + self.__insertValuesPath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                        stream_id=stream_id),
+            self.url + self.__insertValuesPath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                      stream_id=stream_id),
             data=payload,
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
@@ -689,8 +690,8 @@ class SdsClient(object):
             payload = value
 
         response = requests.put(
-            self.__url + self.__updateValuePath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                       stream_id=stream_id),
+            self.url + self.__updateValuePath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                     stream_id=stream_id),
             data=payload,
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
@@ -720,8 +721,8 @@ class SdsClient(object):
             payload = values
 
         response = requests.put(
-            self.__url + self.__updateValuesPath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                        stream_id=stream_id),
+            self.url + self.__updateValuesPath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                      stream_id=stream_id),
             data=payload,
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
@@ -748,8 +749,8 @@ class SdsClient(object):
             payload = value
 
         response = requests.put(
-            self.__url + self.__replaceValuePath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                        stream_id=stream_id),
+            self.url + self.__replaceValuePath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                      stream_id=stream_id),
             data=payload,
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
@@ -777,8 +778,8 @@ class SdsClient(object):
             payload = values
 
         response = requests.put(
-            self.__url + self.__replaceValuesPath.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                         stream_id=stream_id),
+            self.url + self.__replaceValuesPath.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                       stream_id=stream_id),
             data=payload,
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
@@ -798,8 +799,8 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.delete(
-            self.__url + self.__removeValue.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                   stream_id=stream_id, index=key),
+            self.url + self.__removeValue.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                 stream_id=stream_id, index=key),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -820,8 +821,8 @@ class SdsClient(object):
             raise TypeError
 
         response = requests.delete(
-            self.__url + self.__removeWindowValues.format(tenant_id=self.__tenant, namespace_id=namespace_id,
-                                                          stream_id=stream_id, start=start, end=end),
+            self.url + self.__removeWindowValues.format(tenant_id=self.tenantId, namespace_id=namespace_id,
+                                                        stream_id=stream_id, start=start, end=end),
             headers=self.__sdsHeaders())
         if response.status_code < 200 or response.status_code >= 300:
             response.close()
@@ -838,8 +839,8 @@ class SdsClient(object):
         if ((self.__expiration - time.time()) > 5 * 60):
             return self.__token
 
-        context = adal.AuthenticationContext(self.__authority, validate_authority=True)
-        token = context.acquire_token_with_client_credentials(self.__resource, self.__clientid, self.__clientSecret)
+        context = adal.AuthenticationContext(self.authority, validate_authority=True)
+        token = context.acquire_token_with_client_credentials(self.resource, self.clientId, self.clientSecret)
 
         if token is None:
             raise Exception("Failed to retrieve AAD Token")

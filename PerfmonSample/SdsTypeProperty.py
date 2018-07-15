@@ -1,12 +1,10 @@
 from enum import Enum
-# from SdsType import SdsType
 import SdsType
 
 class SdsTypeProperty(object):
     """Sds type property definition"""
     def __init__(self):
         self.__IsKey = False
-        self.prop_names = ['Id', 'IsKey', 'name', 'description', 'SdsType', 'value', 'order']
 
     @property
     def Id(self):
@@ -16,17 +14,17 @@ class SdsTypeProperty(object):
         self.__Id = Id
 
     @property
-    def name(self):
+    def Name(self):
         return self.__name
-    @name.setter
-    def name(self, name):
+    @Name.setter
+    def Name(self, name):
         self.__name = name
 
     @property
-    def description(self):
+    def Description(self):
         return self.__description
-    @description.setter
-    def description(self, description):
+    @Description.setter
+    def Description(self, description):
         self.__description = description
 
     @property
@@ -44,17 +42,17 @@ class SdsTypeProperty(object):
         self.__SdsType = SdsType
 
     @property
-    def value(self):
+    def Value(self):
         return self.__value
-    @value.setter
-    def value(self, value):
+    @Value.setter
+    def Value(self, value):
         self.__value = value
 
     @property
-    def order(self):
+    def Order(self):
         return self.__order
-    @order.setter
-    def order(self, order):
+    @Order.setter
+    def Order(self, order):
         self.__order = order
 
     def to_dictionary(self):
@@ -63,38 +61,71 @@ class SdsTypeProperty(object):
         if hasattr(self, 'Id'):
             dictionary['Id'] = self.Id
 
-        if hasattr(self, 'name'):
-            dictionary['name'] = self.name
+        if hasattr(self, 'Name'):
+            dictionary['Name'] = self.Name
 
-        if hasattr(self, 'description'):
-            dictionary['description'] = self.description
+        if hasattr(self, 'Description'):
+            dictionary['Description'] = self.Description
 
         if hasattr(self, 'SdsType'):
             dictionary['SdsType'] = self.SdsType.to_dictionary()
 
-        if hasattr(self, 'value'):
-            if(isinstance(self.value, Enum)):
-                dictionary['value'] = self.value.name
+        if hasattr(self, 'Value'):
+            if(isinstance(self.Value, Enum)):
+                dictionary['Value'] = self.Value.name
             else:
-                dictionary['value'] = self.value
+                dictionary['Value'] = self.Value
 
-        if hasattr(self, 'order'):
-            dictionary['order'] = self.order
+        if hasattr(self, 'Order'):
+            dictionary['Order'] = self.Order
 
         return dictionary
 
-    def from_dictionary(self, content):
-        type_property = SdsTypeProperty()
+
+    # @staticmethod
+    # def from_dictionary_BAK(content):
+    #     typeProperty = SdsTypeProperty()
+    #
+    #     if len(content) == 0:
+    #         return typeProperty
+    #
+    #     if 'Id' in content:
+    #         typeProperty.Id = content['Id']
+    #
+    #     if 'IsKey' in content:
+    #         typeProperty.IsKey = content['IsKey']
+    #
+    #     if 'Name' in content:
+    #         typeProperty.Name = content['Name']
+    #
+    #     if 'Description' in content:
+    #         typeProperty.Description = content['Description']
+    #
+    #     if 'SdsType' in content:
+    #         typeProperty.SdsType = SdsType.SdsType.from_dictionary(content['SdsType'])
+    #
+    #     if 'Value' in content:
+    #         typeProperty.Value = content['Value']
+    #
+    #     if 'Order' in content:
+    #         typeProperty.Order = content['Order']
+    #
+    #     return typeProperty
+
+    @staticmethod
+    def from_dictionary(content):
+        prop_names = ['Id', 'IsKey', 'Name', 'Description', 'SdsType', 'Value', 'Order']
+        typeProperty = SdsTypeProperty()
 
         if len(content) == 0:
-            return type_property
+            return typeProperty
 
-        for prop_name in self.prop_names:
+        for prop_name in prop_names:
             if prop_name in content:
                 if prop_name == 'SdsType':
-                    val = SdsType.from_dictionary(content[prop_name])
+                    val = SdsType.SdsType.from_dictionary(content['SdsType'])
                 else:
                     val = content[prop_name]
-                type_property.__setattr__(prop_name, val)
+                typeProperty.__setattr__(prop_name, val)
 
-        return type_property
+        return typeProperty
